@@ -1,0 +1,40 @@
+on:
+  push:
+    branches:
+      - main
+      - qa
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: false
+      - name: Check if new Release Needs to Happen
+        env:
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npm install |
+          CI=true GITHUB_TOKEN=$GITHUB_TOKEN npx semantic-release --dry-run | grep -zqv "no relevant changes"
+      - name: Build with Unity Cloud Build
+        if: ${{ success() }}
+        uses: condensereality/UnityCloudBuildAction@v1.7.2
+        with:
+          unity_cloud_build_api_key: ${{ secrets.unity_cloud_build_api_key }}
+          unity_cloud_build_org_id: ${{ secrets.unity_cloud_build_org_id }}
+          unity_cloud_build_project_id: ${{ secrets.unity_cloud_build_project_id }}
+          unity_cloud_build_polling_interval: 60
+          unity_cloud_build_primary_target: "default-windows-desktop-64-bit"
+          unity_cloud_build_target_platform: "windows"
+          unity_cloud_build_download_binary: True
+          unity_cloud_build_github_head_ref: ${{ github.ref }}
+      - name: Semantic Release
+        if: ${{ success() }}
+        env:
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npm install |
+          CI=true GITHUB_TOKEN=$GITHUB_TOKEN npx semantic-release
