@@ -17,18 +17,21 @@ Welcome to the Unity Template Repository! This template is designed to kickstart
 
 1. **Use this Template**:
 click on "create a new repository"
-![how to](https://ibb.co/0yTpjVh)
+![Screenshot (113)](https://github.com/JediMonkeyDan/Unity-Template/assets/109318052/f3225370-3af8-4b6b-9fa4-6713820046c5)
+
 
 2. **Owner/ Repository name**:
 Use the Owner dropdown menu to select the account you want to own the repository. 
 Type a name for your repository, and an optional description.
+![Screenshot (114)](https://github.com/JediMonkeyDan/Unity-Template/assets/109318052/816c4ddb-111c-4cea-9ac6-40e2615902b2)
 
-![how to](https://ibb.co/TH03BDg)
+
 
 3. Click Create repository from template.
 
 
 ## 🛠 Usage:
+
 1. TextMeshPro: Navigate to GameObject > UI > Text - TextMeshPro to create a new TextMeshPro object.
 2. DOTween: Access DOTween through scripts using DG.Tweening namespace.
 3. LeanTouch: Check the LeanTouch component in the inspector for touch-based functionalities.
@@ -36,3 +39,7 @@ Type a name for your repository, and an optional description.
 5. EasyButtons: Decorate your methods with [Button] attribute to create a button in the inspector.
 6. Addressables: Use the Addressables window (Window > Asset Management > Addressables) to manage your assets.
 7. Unity Localization: Navigate to Window > TextMeshPro > Localization to manage and add new languages.
+
+## ☁️ Cloud Build:
+
+This template comes equipped with a `.github/workflows` directory containing a `build.yaml` file. With this setup, Unity Cloud Build is configured to automatically generate a Windows executable build from the repository. This build process is triggered as soon as any push commit is made to the `QA` branch. This ensures that you always have an up-to-date build ready for testing and deployment, streamlining your development and QA processes.
