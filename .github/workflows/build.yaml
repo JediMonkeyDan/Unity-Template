@@ -18,9 +18,9 @@ jobs:
           if [[ -z "${{ env.UNITY_CLOUD_BUILD_PROJECT_ID }}" ]]; then
             response=$(curl -X POST \
               -H "Content-Type: application/json" \
-              -H "Authorization: Basic 5226bb881c5e39d6daa3e7ec2df3d49a" \
+              -H "Authorization: Basic ${{ secrets.unity_cloud_build_api_key }}" \
               -d '{"name": "buildtest", "settings": { "remoteCacheStrategy": "library", "scm": { "type": "git", "url": "git://github.com/JediMonkeyDan/Unity-Template.git", "user": "JediMonkeydan", "pass": "c0rpNGX1nt3ract1v3!"}}}' \
-              https://build-api.cloud.unity3d.com/api/v1/orgs/{orgid}/projects)
+              https://build-api.cloud.unity3d.com/api/v1/orgs/${{ secrets.unity_cloud_build_org_id }}/projects)
             echo "response=$response" >> $GITHUB_ENV
           fi
       - name: Update UNITY_CLOUD_BUILD_PROJECT_ID
