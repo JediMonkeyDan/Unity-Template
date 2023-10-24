@@ -31,6 +31,7 @@ Type a name for your repository, and an optional description.
 
 
 ## 🛠 Usage:
+
 1. TextMeshPro: Navigate to GameObject > UI > Text - TextMeshPro to create a new TextMeshPro object.
 2. DOTween: Access DOTween through scripts using DG.Tweening namespace.
 3. LeanTouch: Check the LeanTouch component in the inspector for touch-based functionalities.
@@ -38,3 +39,7 @@ Type a name for your repository, and an optional description.
 5. EasyButtons: Decorate your methods with [Button] attribute to create a button in the inspector.
 6. Addressables: Use the Addressables window (Window > Asset Management > Addressables) to manage your assets.
 7. Unity Localization: Navigate to Window > TextMeshPro > Localization to manage and add new languages.
+
+## ☁️ Cloud Build:
+
+This template comes equipped with a `.github/workflows` directory containing a `build.yaml` file. With this setup, Unity Cloud Build is configured to automatically generate a Windows executable build from the repository. This build process is triggered as soon as any push commit is made to the `QA` branch. This ensures that you always have an up-to-date build ready for testing and deployment, streamlining your development and QA processes.
