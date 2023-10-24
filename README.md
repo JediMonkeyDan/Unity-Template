@@ -17,13 +17,15 @@ Welcome to the Unity Template Repository! This template is designed to kickstart
 
 1. **Use this Template**:
 click on "create a new repository"
-![how to](https://ibb.co/0yTpjVh)
+![Screenshot (113)](https://github.com/JediMonkeyDan/Unity-Template/assets/109318052/f3225370-3af8-4b6b-9fa4-6713820046c5)
+
 
 2. **Owner/ Repository name**:
 Use the Owner dropdown menu to select the account you want to own the repository. 
 Type a name for your repository, and an optional description.
+![Screenshot (114)](https://github.com/JediMonkeyDan/Unity-Template/assets/109318052/816c4ddb-111c-4cea-9ac6-40e2615902b2)
 
-![how to](https://ibb.co/TH03BDg)
+
 
 3. Click Create repository from template.
 
