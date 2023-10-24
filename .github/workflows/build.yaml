@@ -9,6 +9,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check UNITY_CLOUD_BUILD_PROJECT_ID
+        id: check_project_id
+        run: echo "UNITY_CLOUD_BUILD_PROJECT_ID=${{ env.UNITY_CLOUD_BUILD_PROJECT_ID }}"
+      - name: Create Unity Cloud Build project
+        id: create_project
+        run: |
+          if [[ -z "${{ env.UNITY_CLOUD_BUILD_PROJECT_ID }}" ]]; then
+            response=$(curl -X POST \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Basic 5226bb881c5e39d6daa3e7ec2df3d49a" \
+              -d '{"name": "buildtest", "settings": { "remoteCacheStrategy": "library", "scm": { "type": "git", "url": "git://github.com/JediMonkeyDan/Unity-Template.git", "user": "JediMonkeydan", "pass": "c0rpNGX1nt3ract1v3!"}}}' \
+              https://build-api.cloud.unity3d.com/api/v1/orgs/{orgid}/projects)
+            echo "response=$response" >> $GITHUB_ENV
+          fi
+      - name: Update UNITY_CLOUD_BUILD_PROJECT_ID
+        id: update_project_id
+        run: |
+          if [[ -n "${{ env.response }}" ]]; then
+            guid=$(echo "${{ env.response }}" | jq -r '.guid')
+            echo "UNITY_CLOUD_BUILD_PROJECT_ID=$guid" >> $GITHUB_ENV
+          fi
+
+
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
