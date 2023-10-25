@@ -16,7 +16,7 @@ jobs:
         id: create_project
         run: |
           if [[ -z "${{ env.UNITY_CLOUD_BUILD_PROJECT_ID }}" ]]; then
-            repository_name=$(basename -s .git $(git config --get remote.origin.url || echo "fallback-repo-name"))
+            repository_name=$(basename -s .git $(git config --get remote.origin.url || echo "fallback-repo"))
             response=$(curl -X POST \
               -H "Content-Type: application/json" \
               -H "Authorization: Basic ${{ secrets.unity_cloud_build_api_key }}" \
@@ -28,7 +28,7 @@ jobs:
         id: update_project_id
         run: |
           if [[ -n "${{ env.response }}" ]]; then
-            guid=$(echo "${{ env.response }}" | jq -r '.guid')
+            guid=$(echo '${{ env.response }}' | jq -r '.guid')
             echo "UNITY_CLOUD_BUILD_PROJECT_ID=$guid" >> $GITHUB_ENV
           fi
       - name: Checkout
