@@ -16,10 +16,11 @@ jobs:
         id: create_project
         run: |
           if [[ -z "${{ env.UNITY_CLOUD_BUILD_PROJECT_ID }}" ]]; then
+            repository_name=$(basename -s .git $(git config --get remote.origin.url))
             response=$(curl -X POST \
               -H "Content-Type: application/json" \
               -H "Authorization: Basic ${{ secrets.unity_cloud_build_api_key }}" \
-              -d '{"name": "buildtest", "settings": { "remoteCacheStrategy": "library", "scm": { "type": "git", "url": "git://github.com/JediMonkeyDan/Unity-Template.git", "user": "JediMonkeydan", "pass": "c0rpNGX1nt3ract1v3!"}}}' \
+              -d "{\"name\": \"$repository_name\", \"settings\": { \"remoteCacheStrategy\": \"library\", \"scm\": { \"type\": \"git\", \"url\": \"git://github.com/JediMonkeyDan/Unity-Template.git\", \"user\": \"JediMonkeydan\", \"pass\": \"c0rpNGX1nt3ract1v3!\"}}}" \
               https://build-api.cloud.unity3d.com/api/v1/orgs/${{ secrets.unity_cloud_build_org_id }}/projects)
             echo "response=$response" >> $GITHUB_ENV
           fi
