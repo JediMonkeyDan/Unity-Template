@@ -16,7 +16,7 @@ jobs:
         id: create_project
         run: |
           if [[ -z "${{ env.UNITY_CLOUD_BUILD_PROJECT_ID }}" ]]; then
-            repository_name=$(basename -s .git $(git config --get remote.origin.url))
+            repository_name=$(basename -s .git $(git config --get remote.origin.url || echo "fallback-repo-name"))
             response=$(curl -X POST \
               -H "Content-Type: application/json" \
               -H "Authorization: Basic ${{ secrets.unity_cloud_build_api_key }}" \
