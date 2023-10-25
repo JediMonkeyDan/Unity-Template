@@ -30,9 +30,6 @@ jobs:
             guid=$(echo "${{ env.response }}" | jq -r '.guid')
             echo "UNITY_CLOUD_BUILD_PROJECT_ID=$guid" >> $GITHUB_ENV
           fi
-
-
-    steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
