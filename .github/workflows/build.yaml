@@ -20,7 +20,7 @@ jobs:
             response=$(curl -X POST \
               -H "Content-Type: application/json" \
               -H "Authorization: Basic ${{ secrets.unity_cloud_build_api_key }}" \
-              -d "{\"name\": \"$repository_name\", \"settings\": { \"remoteCacheStrategy\": \"library\", \"scm\": { \"type\": \"git\", \"url\": \"git://github.com/JediMonkeyDan/Unity-Template.git\", \"user\": \"JediMonkeydan\", \"pass\": \"c0rpNGX1nt3ract1v3!\"}}}" \
+              -d "{\"name\": \"$repository_name\", \"settings\": { \"remoteCacheStrategy\": \"library\", \"scm\": { \"type\": \"git\", \"url\": \"git://github.com/JediMonkeyDan/Unity-Template.git\", \"user\": \"JediMonkeydan\", \"pass\": \"${{ secrets.GIT_PASS }}\"}}}" \
               https://build-api.cloud.unity3d.com/api/v1/orgs/${{ secrets.unity_cloud_build_org_id }}/projects)
             echo "response=$response" >> $GITHUB_ENV
           fi
