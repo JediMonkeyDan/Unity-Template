@@ -1,3 +1,4 @@
+#is triggered on push events to main and qa branches
 on:
   push:
     branches:
@@ -8,6 +9,7 @@ jobs:
   ci:
     runs-on: ubuntu-latest
 
+#Check UNITY_CLOUD_BUILD_PROJECT_ID
     steps:
       - name: Check UNITY_CLOUD_BUILD_PROJECT_ID
         id: check_project_id
